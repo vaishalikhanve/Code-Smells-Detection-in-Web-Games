@@ -15,25 +15,13 @@ for j in filelist:
     v=f1.readlines()
     n=len(v)
     f1.close()
-    closure=0
-    couplingJs=0
-    empty=0
-    globalv=0
-    largeobj=0
-    lazyobj=0
-    longmess=0
-    longmeth=0
-    longpara=0
-    nested=0
-    refused=0
-    switch=0
-    unreachable=0
+    arr=[0]*13
     a=[]
     flag=0
     temp=[]
-    
-    for dline in v:
-        y=dline.strip()
+    f.open(st,"r")
+    for i in range(v):
+        y=(f.readline()).strip()
         #print(y)
         if "http://localhost:8000/" in y and flag==0:
             flag=1
@@ -66,99 +54,89 @@ for j in filelist:
             z=x.index(":")+1
             num=int(x[z:])
             largeobj+=num
+            arr[4]+=num
             #print(x)
             i+=1
         elif y == "********** LAZY OBJECT **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            lazyobj+=num
+            arr[5]+=num
             #print(x)
             i+=1
         elif y == "********** LONG MESSAGE **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            longmess+=num
+            arr[6]+=num
             #print(x)
             i+=1
         elif y == "********** LONG METHOD/FUNCTION **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            longmeth+=num
+            arr[7]+=num
             #print(x)
             i+=1
         elif y == "********** LONG PARAMETER LIST **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            longpara+=num
+            arr[8]+=num
             #print(x)
             i+=1
         elif y == "********** NESTED CALLBACK **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            nested+=num
+            arr[9]+=num
             #print(x)
             i+=1
         elif y == "********** REFUSED BEQUEST **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            refused+=num
+            arr[10]+=num
             #print(x)
             i+=1
         elif y == "********** SWITCH STATEMENT **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            switch+=num
+            arr[11]+=num
             #print(x)
             i+=1
         elif y == "********** UNREACHABLE CODE **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            unreachable+=num
+            arr[12]+=num
             #print(x)
             i+=1
         elif y == "********** EMPTY CATCH **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            empty+=num
+            arr[2]+=num
             #print(x)
             i+=1
         elif y == "********** COUPLING JS/HTML **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            couplingJs+=num
+            arr[1]+=num
             #print(x)
             i+=1
         elif y == "********** CLOSURE SMELL **********":
             x=(f.readline()).strip()
             z=x.index(":")+1
             num=int(x[z:])
-            closure+=num
+            arr[0]+=num
             #print(x)
             i+=1
-    globalv=len(set(a))
-    temp.append(closure)
-    temp.append(couplingJs)
-    temp.append(empty)
-    temp.append(globalv)
-    temp.append(largeobj)
-    temp.append(lazyobj)
-    temp.append(longmess)
-    temp.append(longmeth)
-    temp.append(longpara)
-    temp.append(nested)
-    temp.append(refused)
-    temp.append(switch)
-    temp.append(unreachable)
+    
+    arr[3]+=len(set(a))
+    temp+=arr
     csvData.append(temp)
 with open('games-output-78.csv', 'w') as csvFile:
     writer = csv.writer(csvFile)
