@@ -1,6 +1,6 @@
 import os, zipfile
 
-dir_name = r'C:\Users\minni\Downloads'
+dir_name = r'path to zipped folder'
 extension = ".zip"
 
 for item in os.listdir(dir_name): 
