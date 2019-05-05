@@ -7,7 +7,7 @@ from time import sleep
 options = Options()
 options.add_argument("--disable-notifications")
 #options.add_argument("download.default_directory=C:\\Users\\minni\\Desktop\\javascript_games")
-driver = webdriver.Chrome(r"C:\Users\minni\Downloads\chromedriver_win32\chromedriver.exe",chrome_options=options)
+driver = webdriver.Chrome(r"path to \chromedriver_win32\chromedriver.exe",chrome_options=options)
 f=open("javascript.txt","r")
 array=f.readlines()
 f.close()
