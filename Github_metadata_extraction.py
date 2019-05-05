@@ -14,7 +14,7 @@ for i in x:
     y=i.strip().split('/')
     api_url="https://api.github.com/repos/"+y[-2]+"/"+y[-1]
     print(api_url)
-    token=""
+    token="github acces token "
     url = "{}?access_token={}".format(api_url,token)
     response=requests.get(url)
     data=response.text
